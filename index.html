@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CCA | Cyber Compliance Authority</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f2f6fc;
+      color: #1a1a1a;
+    }
+
+    header {
+      background: #0a2a43;
+      color: #ffffff;
+      padding: 20px 40px;
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .container {
+      max-width: 650px;
+      margin: 40px auto;
+      background: #ffffff;
+      padding: 30px 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 22px;
+      font-weight: 600;
+      color: #0a2a43;
+    }
+
+    label {
+      font-size: 15px;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #b4bfd0;
+      border-radius: 6px;
+      margin-bottom: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      background: #0a2a43;
+      color: #ffffff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #113d5f;
+    }
+
+    .analysis-box {
+      background: #fff3cd;
+      border: 1px solid #ffeeba;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 6px;
+      font-size: 15px;
+      display: none;
+    }
+
+    .red-flag {
+      background: #ffebeb;
+      border: 1px solid #ffb3b3;
+      color: #a30000;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 6px;
+      font-size: 15px;
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 18px;
+      margin-top: 40px;
+      font-size: 13px;
+      background: #0a2a43;
+      color: #e6e6e6;
+    }
+  </style>
+
+  <script>
+    function analyzeIP() {
+      const ip = document.getElementById("ipInput").value.trim();
+      if (ip === "") {
+        alert("Please enter an IP address.");
+        return;
+      }
+
+      const analysisBox = document.getElementById("analysis");
+      const resultBox = document.getElementById("result");
+
+      analysisBox.style.display = "block";
+      resultBox.style.display = "none";
+      analysisBox.innerHTML = "Conducting security analysis on the submitted IP address...<br>Please wait 2 minutes.";
+
+      setTimeout(() => {
+        analysisBox.style.display = "none";
+        resultBox.style.display = "block";
+        resultBox.innerHTML = `
+          <strong>⚠️ Security Advisory: Red Flag Detected</strong><br><br>
+          The IP address <strong>${ip}</strong> has been <strong>flagged for 27 days</strong> within the CCA Network Oversight System.<br><br>
+          This address has been associated with transactions linked to <strong>foreign dark-web marketplaces</strong> involving <strong>illicit arms dealing activities</strong> in violation of federal and international cybersecurity compliance regulations.<br><br>
+          If you believe this classification is incorrect, you are advised to report and request a formal review through the <strong>CCA Cyber Incident Reporting Portal</strong> as mandated under U.S. Cybersecurity and Critical Infrastructure Protection Code.
+        `;
+      }, 2000 * 1); // 2 minutes = 120000 ms | for demo changed to 2 sec
+    }
+  </script>
+
+</head>
+
+<body>
+
+<header>
+  CCA — Cyber Compliance Authority
+</header>
+
+<div class="container">
+  <h2>Check Your IP Address Security</h2>
+  <p>Please enter the IP address you wish to verify for security and compliance review.</p>
+
+  <label for="ipInput">IP Address:</label>
+  <input type="text" id="ipInput" placeholder="e.g., 192.168.0.1">
+
+  <button onclick="analyzeIP()">Search & Analyze</button>
+
+  <div id="analysis" class="analysis-box"></div>
+  <div id="result" class="red-flag"></div>
+</div>
+
+<footer>
+  © 2025 Cyber Compliance Authority (CCA). All Rights Reserved — United States Federal Cybersecurity Division.
+</footer>
+
+</body>
+</html>
